@@ -4,11 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth');
+Route::get('/', [ItemController::class, 'index'])->name('items.index')->middleware('auth');
 
-Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::post('/update', [ItemController::class, 'update'])->name('items.update');
 Route::post('/delete', [ItemController::class, 'destroy'])->name('items.destroy');
 
